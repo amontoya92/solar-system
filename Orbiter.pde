@@ -24,8 +24,19 @@ class Orbiter {
     if(orbitdays > 0) {
       rotateY(frameCount / orbitdays);
     }
+    if (DRAW_ORBITS) {
+      pushMatrix();
+      rotateY(PI/2);
+      rotateX(PI/2);
+      noFill();
+      stroke(255);
+      ellipse(0,0,d*2,d*2);
+      popMatrix();
+    }
+    //translate distance from parent
     translate (0, 0, d);
     fill(c);
+    noStroke();
     sphere(r);
     popMatrix();
   }

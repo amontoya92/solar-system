@@ -8,7 +8,7 @@ PGraphicsOpenGL pgl;
 //PImage bkgr;
 
 Orbiter sun, mercury, venus, earth, moon, mars, jupiter, saturn, rings, uranus, neptune, pluto;
-
+boolean DRAW_ORBITS = true;
 
 void setup ()
 {
@@ -26,6 +26,7 @@ void setup ()
   noStroke();
 
   sun = new Orbiter();
+  sun.c = color(255, 130, 40);
   sun.x = width/2;
   sun.y = height/2;
 
@@ -41,9 +42,10 @@ void setup ()
 void draw() 
 {
   background(0,0,0);
-  lights();
 
+  noLights();
   sun.draw();
+  lights();
   earth.draw();
 }
 
