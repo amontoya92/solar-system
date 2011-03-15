@@ -1,0 +1,14 @@
+todo for solar system:
+
+1. textures for all planets
+2. stars
+3. asteroid belt
+
+hints:
+	stars:
+		create a Starfield Class
+		in the Constructor:
+		embedded for() loop
+		random x, random y, random z
+		
+		
