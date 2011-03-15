@@ -1,6 +1,6 @@
 import processing.opengl.*;
 import javax.media.opengl.*;
-
+int zoom = 0;
 GL gl;
 PGraphicsOpenGL pgl;
 
@@ -14,7 +14,7 @@ float velocityY = 0;
 
 void setup ()
 {
-  size(1200,1000, OPENGL);
+  size(1650,1000, OPENGL);
 
   // antialiasing
   hint(ENABLE_OPENGL_4X_SMOOTH);
@@ -29,9 +29,10 @@ void setup ()
   sun.c = color(255, 130, 40);
   sun.setTexture("sun.jpg");  
   sun.x = 0;
-  sun.y = 0;
+  sun.y = 0;            
 
   mercury = new Orbiter();
+  mercury.setTexture("mercury.jpg");
   mercury.parent = sun;
   mercury.d = 135;
   mercury.orbitdays = 50.1;
@@ -39,13 +40,15 @@ void setup ()
   mercury.c = color(185);
 
   venus = new Orbiter();
+  venus.setTexture("venus.jpg");
   venus.parent = sun;
   venus.d = 164;
-  venus.orbitdays = 75.1;
+  venus.orbitdays = 75.1-zoom;
   venus.r = 12;
   venus.c = color(85,30,10);
 
   earth = new Orbiter();
+  earth.setTexture("earth.jpg");
   earth.parent = sun;
   earth.d = 205;
   earth.orbitdays = 365.2;
@@ -53,6 +56,7 @@ void setup ()
   earth.c = color(5, 98, 210);
 
   mars = new Orbiter();
+  mars.setTexture("mars.jpg");
   mars.parent = sun;
   mars.d = 245;
   mars.orbitdays = 686.9;
@@ -68,6 +72,7 @@ void setup ()
   jupiter.c = color(80, 45, 5);
 
   saturn =  new Orbiter();
+  saturn.setTexture("saturn.jpg");
   saturn.parent = sun;
   saturn.d = 370;
   saturn.orbitdays = 120.1;
@@ -75,6 +80,7 @@ void setup ()
   saturn.c = color(130, 55, 0);
 
   uranus =  new Orbiter();
+  uranus.setTexture("uranus.jpg");
   uranus.parent = sun;
   uranus.d = 440;
   uranus.orbitdays = 306.601;
@@ -82,6 +88,7 @@ void setup ()
   uranus.c = color(10, 100, 200);
 
   neptune =  new Orbiter();
+  neptune.setTexture("neptune.jpg");
   neptune.parent = sun;
   neptune.d = 500;
   neptune.orbitdays = 601.521;
@@ -89,6 +96,7 @@ void setup ()
   neptune.c = color(7, 77, 222);
 
   pluto =  new Orbiter();
+  pluto.setTexture("pluto.jpg");
   pluto.parent = sun;
   pluto.d = 555;
   pluto.orbitdays = 555.5;
@@ -99,7 +107,16 @@ void setup ()
 void draw()
 {
   background(0,0,0);
+  pushMatrix();
 
+   
+  noFill();
+  strokeWeight(2);
+  stroke(25,255,255);
+  ellipse(75,75,75,75);
+  line(75+rotationX,125,75-rotationX,25);
+  line(25,75+rotationY,125,75-rotationY);
+  popMatrix();
   translate(width/2, height/2);
 
   rotateX( radians(-rotationX) );  
@@ -126,6 +143,12 @@ void draw()
   if(mousePressed) {
     velocityX += (mouseY-pmouseY) * 0.01;
     velocityY -= (mouseX-pmouseX) * 0.01;
+  }
+  if(keyPressed) {
+    if(keyCode == UP) sun.x+=10;
+    if(keyCode == DOWN) sun.x-=10;
+    if(keyCode == LEFT) sun.y-=10;
+    if(keyCode == RIGHT) sun.y+=10;
   }
 }
 
