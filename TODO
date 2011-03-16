@@ -1,8 +1,12 @@
 todo for solar system:
 
-1. textures for all planets
-2. stars
-3. asteroid belt
+// textures for all planets
+-  accurate orbit days
+-  accurate day rotation days
+
+-  stars
+-  asteroid belt
+
 
 hints:
 	stars:

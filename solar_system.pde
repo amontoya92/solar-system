@@ -1,12 +1,12 @@
 import processing.opengl.*;
 import javax.media.opengl.*;
-int zoom = 0;
 GL gl;
 PGraphicsOpenGL pgl;
 
 Orbiter sun, mercury, venus, earth, moon, mars, jupiter, saturn, rings, uranus, neptune, pluto;
 boolean DRAW_ORBITS = true;
 
+//arcball replacement
 float rotationX = 0;
 float rotationY = 0;
 float velocityX = 0;
@@ -43,7 +43,7 @@ void setup ()
   venus.setTexture("venus.jpg");
   venus.parent = sun;
   venus.d = 164;
-  venus.orbitdays = 75.1-zoom;
+  venus.orbitdays = 75.1;
   venus.r = 12;
   venus.c = color(85,30,10);
 
@@ -107,23 +107,14 @@ void setup ()
 void draw()
 {
   background(0,0,0);
-  pushMatrix();
-
-   
-  noFill();
-  strokeWeight(2);
-  stroke(25,255,255);
-  ellipse(75,75,75,75);
-  line(75+rotationX,125,75-rotationX,25);
-  line(25,75+rotationY,125,75-rotationY);
-  popMatrix();
+  
   translate(width/2, height/2);
-
   rotateX( radians(-rotationX) );  
   rotateY( radians(270 - rotationY) );  
 
   noLights();
   sun.draw();
+  
   lights();
   mercury.draw();
   venus.draw();
@@ -140,15 +131,10 @@ void draw()
   rotationY += velocityY;
   velocityX *= 0.95;
   velocityY *= 0.95;  
+  
   if(mousePressed) {
     velocityX += (mouseY-pmouseY) * 0.01;
     velocityY -= (mouseX-pmouseX) * 0.01;
-  }
-  if(keyPressed) {
-    if(keyCode == UP) sun.x+=10;
-    if(keyCode == DOWN) sun.x-=10;
-    if(keyCode == LEFT) sun.y-=10;
-    if(keyCode == RIGHT) sun.y+=10;
   }
 }
 
