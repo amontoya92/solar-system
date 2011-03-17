@@ -4,7 +4,7 @@ class Orbiter extends TexturedSphere {
 
   float x,y,z;
   float r = 50;
-  float d = 0, orbitdays = 0;
+  float d = 0, orbitdays = 0,rotationdays = 0;
   color c = color(255, 126, 45);
   Orbiter parent;
 
@@ -41,11 +41,15 @@ class Orbiter extends TexturedSphere {
       ellipse(0,0,d*2,d*2);
       popMatrix();
     }
+
     //translate distance from parent
     translate (0, 0, d);
     fill(c);
     noStroke();
 
+    if(orbitdays > 0 ) {
+      rotateY( (rotationdays / frameCount) * DAY_MULTIPLIER);
+    }
     if (usingTexture) {
       // draw textured sphere
       texturedSphere(r, texmap);
@@ -61,4 +65,3 @@ class Orbiter extends TexturedSphere {
   {
   }
 }
-

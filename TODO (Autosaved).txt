@@ -1,0 +1,21 @@
+todo for solar system:
+
+-  accurate orbit days
+-  accurate day rotation days
+-  add moons
+-  stars
+-  asteroid belt
+
+
+hints:
+	stars:
+		create a Starfield Class
+		in the Constructor:
+		embedded for() loop
+		random x, random y, random z
+		
+		
+
+
+// DONE
+- textures for all planets
