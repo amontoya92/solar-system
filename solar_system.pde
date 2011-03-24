@@ -1,4 +1,7 @@
-
+import processing.opengl.*;
+import javax.media.opengl.*;
+GL gl;
+PGraphicsOpenGL pgl;
 
 Orbiter sun, mercury, venus, earth, moon, mars, jupiter, saturn, rings, uranus, neptune, pluto;
 boolean DRAW_ORBITS = true;
@@ -12,8 +15,14 @@ float velocityY = 0;
 
 void setup ()
 {
-  size(1650,1000, P3D );
+  size(1650,1000, OPENGL);
 
+  // antialiasing
+  hint(ENABLE_OPENGL_4X_SMOOTH);
+  pgl = (PGraphicsOpenGL) g;
+  gl = pgl.gl;
+  gl.glHint (gl.GL_LINE_SMOOTH_HINT, gl.GL_NICEST);
+  gl.glEnable (gl.GL_LINE_SMOOTH);
 
   noStroke();
 
